@@ -32,10 +32,10 @@ public class Utils {
     private static final String TAG = Utils.class.getSimpleName();
 
     public static void RecursiveCreateDirectories(String fileDir) {
-        String[] fileDirs = fileDir.split("\\/");
+        String[] fileDirs = fileDir.split("/");
         String topPath = "";
-        for (int i = 0; i < fileDirs.length; i++) {
-            topPath += "/" + fileDirs[i];
+        for (String dir : fileDirs) {
+            topPath += "/" + dir;
             File file = new File(topPath);
             if (file.exists()) {
                 continue;
@@ -50,7 +50,7 @@ public class Utils {
             return;
         }
         String dstDir = dstPath.substring(0, dstPath.lastIndexOf('/'));
-        if (dstDir.length() > 0) {
+        if (!dstDir.isEmpty()) {
             RecursiveCreateDirectories(dstDir);
         }
         InputStream is = null;
